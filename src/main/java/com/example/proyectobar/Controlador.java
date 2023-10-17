@@ -3,20 +3,29 @@ package com.example.proyectobar;
 
 import com.example.proyectobar.util.AlertUtils;
 import com.example.proyectobar.domain.Bar;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class Controlador {
+public class Controlador implements Initializable {
+    @FXML
+    private Button botonConfirmar;
 
     @FXML
     private Button botonCancelar;
@@ -49,13 +58,31 @@ public class Controlador {
     private TextField ponerSabor;
 
     @FXML
-    private ListView<Bar> salidaDatos;
+    private TableView<Bar> salidaDatos;
 
     @FXML
     private ComboBox<String> seleccionarComplemento;
 
     @FXML
     private ComboBox<String> seleccionarMarca;
+    @FXML
+    private TableColumn<Bar, String> columnaBebida;
+
+    @FXML
+    private TableColumn<Bar, String> columnaComplemento;
+
+    @FXML
+    private TableColumn<Bar, String> columnaMarca;
+
+    @FXML
+    private TableColumn<Bar, String> columnaMezcla;
+
+    @FXML
+    private TableColumn<Bar, String> columnaSabor;
+    ObservableList<Bar> resultados;
+
+
+
     private enum Accion {
         NUEVO, MODIFICAR
     }
@@ -63,9 +90,11 @@ public class Controlador {
 
     private final ConexionBD conexionBD;
     private Bar bebidaSeleccionado;
+    String marcaBuena="";
+    String complementoBueno="";
 
     public Controlador() {
-        conexionBD = new conexionBD();
+        conexionBD = new ConexionBD();
         try {
             conexionBD.conectar();
         } catch (SQLException sqle) {
@@ -76,19 +105,21 @@ public class Controlador {
             AlertUtils.mostrarError("Error al cargar la configuración");
         }
 
-        System.out.println(System.getProperty("user.home"));
+        //System.out.println("user.home");
     }
+    @FXML
+    void pulsarBotonConfirmar(ActionEvent event) {
 
+    }
     @FXML
     void pulsarBotonCancelar(ActionEvent event) {
         limpiarCajas();
-        modoEdicion(false);
         accion = Accion.NUEVO;
     }
 
     @FXML
     void pulsarBotonEliminar(ActionEvent event) {
-        Bar bar1 = salidaDatos.getSelectionModel().getSelectedItem();
+        /*Bar bar1 = salidaDatos.getSelectionModel().getSelectedItem();
         if (bar1 == null) {
             lbEstado.setText("ERROR: No se ha seleccionado ningún coche");
             return;
@@ -105,34 +136,42 @@ public class Controlador {
             conexionBD.eliminarBebida(bar1);
             lbEstado.setText("MENSAJE: Coche eliminado con éxito");
 
-            cargarDatos();
         } catch (SQLException sqle) {
             AlertUtils.mostrarError("No se ha podido eliminar el coche");
-        }
+        }*/
     }
 
     @FXML
     void pulsarBotonGuardar(ActionEvent event) {
 
-        if(ponerBebida.getText()==null || ponerSabor.getText()==null|| ponerMezcla.getText()==null|| seleccionarMarca.getValue()==null ||seleccionarComplemento.getValue()==null){
+        if (ponerBebida.getText() == null || ponerSabor.getText() == null || ponerMezcla.getText() == null || seleccionarMarca.getValue() == null || seleccionarComplemento.getValue() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error en datos");
             alert.setContentText("Debe completar todos los campos");
             alert.showAndWait();
             throw new RuntimeException("");
-        }else {
-            String bebida = ponerBebida.getText();
-            String sabor = ponerSabor.getText();
-            String mezcla = ponerMezcla.getText();
-            String marca = seleccionarMarca.getValue();
-            String complemento = seleccionarComplemento.getValue();
+        } else {
+            marcaBuena = seleccionarMarca.getValue();
+            complementoBueno = seleccionarComplemento.getValue();
 
         }
+        aniadir();
     }
+        private void aniadir(){
+            Bar bar= new Bar();
+            bar.bebida.set(ponerBebida.getText());
+            bar.sabor.set(ponerSabor.getText());
+            bar.mezcla.set(ponerMezcla.getText());
+            bar.marca.set(marcaBuena);
+            bar.complemento.set(complementoBueno);
+            resultados.add(bar);
+            System.out.println(resultados);
+
+        }
+
 
     @FXML
     void pulsarBotonModificar(ActionEvent event) {
-        modoEdicion(true);
         accion = Accion.MODIFICAR;
     }
 
@@ -174,21 +213,23 @@ public class Controlador {
         seleccionarComplemento.setValue("");
 
     }
-    private void modoEdicion(boolean activar) {
-        botonNuevo.setDisable(activar);
-        botonGuardar.setDisable(!activar);
-        botonModificar.setDisable(activar);
-        botonEliminar.setDisable(activar);
-        botonCancelar.setDisable(activar);
-        botonOpciones.setDisable(activar);
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        String[] marca = new String[]{"Negrita","Brugal","La Recompensa", "Burbon","JB","DYC","Cardú","Jagger","Burbon","Belvedere", "Eristoff", "Barceló", "Puerto de Indias","Seagram's","Tanqueray"};
+        seleccionarMarca.setItems(FXCollections.observableArrayList(marca));
+        String[]complementos=new String[]{"Rodaja Limon","Rodaja Naranja", "Gominolas","Hielo","Gotas de licor",};
+        seleccionarComplemento.setItems(FXCollections.observableArrayList(complementos));
 
-        ponerBebida.setEditable(activar);
-        ponerSabor.setEditable(activar);
-        ponerMezcla.setEditable(activar);
-        seleccionarMarca.setDisable(!activar);
-        seleccionarComplemento.setDisable(activar);
-    }
-    private void cargarDatos() throws SQLException {// Esto es para poner los valores en los combobox
+        columnaBebida.setCellValueFactory(new PropertyValueFactory<>("bebida"));
+        columnaComplemento.setCellValueFactory(new PropertyValueFactory<>("complemento"));
+        columnaMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
+        columnaMezcla.setCellValueFactory(new PropertyValueFactory<>("mezcla"));//Atributos creados
+        columnaSabor.setCellValueFactory(new PropertyValueFactory<>("sabor"));//Atributos creados
 
+        resultados= FXCollections.observableArrayList();
+        salidaDatos.setItems(resultados);
     }
+
+
+
 }
