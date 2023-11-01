@@ -4,7 +4,8 @@ Use Bar;
 
 
 CREATE TABLE Datos(
-Bebida varchar(30) primary key,
+id int primary key auto_increment,
+Bebida varchar(30),
 Sabor varchar(30),
 Mezcla varchar(30),
 Marca varchar(30),
@@ -12,11 +13,19 @@ Complemento varchar(30)
 
  );
  INSERT INTO Datos  VALUES
- ("Vodka", "Fresa","Limon", "Eristoff", "Rodaja limon"),
- ("Whisky","Caramelo","CocaCola","JB","Rodaja naranja"),
- ("Ginebra","Fresa","Tonica","Puerto de Indias", "Gominolas"),
- ("Ron","Añejo", "CocaCola","Barcelo","Rodaja naranja"),
- ("Licor","Hierbas","Naranja","Jagger","Rodaja naranja");
- 
+ (1,"Vodka", "Fresa","Limon", "Eristoff", "Rodaja limon"),
+ (2,"Whisky","Caramelo","CocaCola","JB","Rodaja naranja"),
+ (3,"Ginebra","Fresa","Tonica","Puerto de Indias", "Gominolas"),
+ (4,"Ron","Añejo", "CocaCola","Barcelo","Rodaja naranja"),
+ (5,"Licor","Melocotón","Naranja","Cointreau","Nada");
 
+CREATE TABLE Pedido(
+id int primary key auto_increment,
+Bebida varchar(30),
+Sabor varchar(30),
+Mezcla varchar(30),
+Marca varchar(30),
+Complemento varchar(30)
+
+ );
 

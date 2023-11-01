@@ -1,10 +1,13 @@
+
+
+
 package com.example.proyectobar;
 
-
-import com.example.proyectobar.util.AlertUtils;
 import com.example.proyectobar.domain.Bar;
+import com.example.proyectobar.util.AlertUtils;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,32 +15,21 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class Controlador implements Initializable {
-    @FXML
-    private Button botonConfirmar;
 
     @FXML
-    private Button botonCancelar;
-
-    @FXML
-    private Button botonEliminar;
+    private Button botonFinalizarPedido;
 
     @FXML
     private Button botonGuardar;
-
-    @FXML
-    private Button botonModificar;
 
     @FXML
     private Button botonNuevo;
@@ -49,51 +41,105 @@ public class Controlador implements Initializable {
     private Label lbEstado;
 
     @FXML
-    private TextField ponerBebida;
-
+    private ListView<Bar> salidaOpciones;
     @FXML
-    private TextField ponerMezcla;
-
-    @FXML
-    private TextField ponerSabor;
-
-    @FXML
-    private TableView<Bar> salidaDatos;
+    private ComboBox<String> seleccionarBebida;
 
     @FXML
     private ComboBox<String> seleccionarComplemento;
 
     @FXML
     private ComboBox<String> seleccionarMarca;
-    @FXML
-    private TableColumn<Bar, String> columnaBebida;
 
     @FXML
-    private TableColumn<Bar, String> columnaComplemento;
+    private ComboBox<String> seleccionarMezcla;
 
     @FXML
-    private TableColumn<Bar, String> columnaMarca;
-
-    @FXML
-    private TableColumn<Bar, String> columnaMezcla;
-
-    @FXML
-    private TableColumn<Bar, String> columnaSabor;
-    ObservableList<Bar> resultados;
+    private ComboBox<String> seleccionarSabor;
 
 
+    @Override// Metodo que se ejecuta una vez se abre la ventana
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        String[]opciones=new String[]{"Vodka", "Ron","Ginebra","Licor","Whisky"};
+        seleccionarBebida.setItems(FXCollections.observableArrayList(opciones));
+        //Metodo ChangeListener, para que depende de lo que pulse en el primer combobox,
+        //se me actualice la información de los demás combobox.
+        seleccionarBebida.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                //Aquí se llama al método donde actualizo la inforrmación de los combobox
+                actualizarComboBoxs(newValue);
+            }
+        });
 
-    private enum Accion {
-        NUEVO, MODIFICAR
     }
-    private Accion accion;
+    private void actualizarComboBoxs(String bebidaSeleccionada) {
+        //Actualizamos los combobox
+        seleccionarMarca.getSelectionModel().clearSelection();
+        seleccionarSabor.getSelectionModel().clearSelection();
+        seleccionarMezcla.getSelectionModel().clearSelection();
+        seleccionarComplemento.getSelectionModel().clearSelection();
+        if(bebidaSeleccionada.equals("Vodka")) {
+            String[] vodka = new String[]{"Belvedere", "Eristoff","Absolut","Ciroc" };
+            seleccionarMarca.setItems(FXCollections.observableArrayList(vodka));
+            String[]saborVodka=new String[]{"Fresa","Tamarindo","Sandía","Lima"};
+            seleccionarSabor.setItems(FXCollections.observableArrayList(saborVodka));
+            String[]mezclaSinLicor=new String[]{"CocaCola", "Naranja", "Limón", "Tónica"};
+            seleccionarMezcla.setItems(FXCollections.observableArrayList(mezclaSinLicor));
+            String[]complementosSinLicor=new String[]{"Rodaja Limon","Rodaja Naranja", "Gominolas","Hielo","Gotas de anís"};
+            seleccionarComplemento.setItems(FXCollections.observableArrayList(complementosSinLicor));
+        }else if(bebidaSeleccionada.equals("Ron")) {
+            String[] ron=new String[]{"Negrita","Brugal","La Recompensa","Barceló"};
+            seleccionarMarca.setItems(FXCollections.observableArrayList(ron));
+            String[]saborRon=new String[]{"Añejo","Blanco","Negro","Dorado"};
+            seleccionarSabor.setItems(FXCollections.observableArrayList(saborRon));
+            String[]mezclaSinLicor=new String[]{"CocaCola", "Naranja", "Limón", "Tónica"};
+            seleccionarMezcla.setItems(FXCollections.observableArrayList(mezclaSinLicor));
+            String[]complementosSinLicor=new String[]{"Rodaja Limon","Rodaja Naranja", "Gominolas","Hielo","Gotas de anís"};
+            seleccionarComplemento.setItems(FXCollections.observableArrayList(complementosSinLicor));
+        }
+        else if(bebidaSeleccionada.equals("Ginebra")) {
+            String[] ginebra=new String[]{"Puerto de Indias","Seagram's","Tanqueray","Beefeater"};
+            seleccionarMarca.setItems(FXCollections.observableArrayList(ginebra));
+            String[]saborGinebra=new String[]{"Floral","Cítrica","Especiada","Afrutada"};
+            seleccionarSabor.setItems(FXCollections.observableArrayList(saborGinebra));
+            String[]mezclaSinLicor=new String[]{"CocaCola", "Naranja", "Limón", "Tónica"};
+            seleccionarMezcla.setItems(FXCollections.observableArrayList(mezclaSinLicor));
+            String[]complementosSinLicor=new String[]{"Rodaja Limon","Rodaja Naranja", "Gominolas","Hielo","Gotas de anís"};
+            seleccionarComplemento.setItems(FXCollections.observableArrayList(complementosSinLicor));
+        }
+        else if(bebidaSeleccionada.equals("Licor")) {
+            String[] licor=new String[]{"Cherry Blossom","Cointreau", "Licor 47", "Licor Hierbas"};
+            seleccionarMarca.setItems(FXCollections.observableArrayList(licor));
+            String[]saborLicor=new String[]{"Manzana","Melocotón","Mora","Cereza"};
+            seleccionarSabor.setItems(FXCollections.observableArrayList(saborLicor));
+            String[]mezclaconLicor=new String[]{"Nada", "Naranja","CocaCola", "Limón"};
+            seleccionarMezcla.setItems(FXCollections.observableArrayList(mezclaconLicor));
+            String[]complementosConLicor=new String[]{"Nada","Hielo"};
+            seleccionarComplemento.setItems(FXCollections.observableArrayList(complementosConLicor));
+        }else if(bebidaSeleccionada.equals("Whisky")) {
+            String[] whisky=new String[]{"Burbon","JB","DYC","Cardú"};
+            seleccionarMarca.setItems(FXCollections.observableArrayList(whisky));
+            String[]saborWhisky=new String[]{"Irlandés","Galés","Canadiense","Estadounidense"};
+            seleccionarSabor.setItems(FXCollections.observableArrayList(saborWhisky));
+            String[]mezclaSinLicor=new String[]{"CocaCola", "Naranja", "Limón", "Tónica"};
+            seleccionarMezcla.setItems(FXCollections.observableArrayList(mezclaSinLicor));
+            String[]complementosSinLicor=new String[]{"Rodaja Limon","Rodaja Naranja", "Gominolas","Hielo","Gotas de anís"};
+            seleccionarComplemento.setItems(FXCollections.observableArrayList(complementosSinLicor));
+        }
+    }
+
 
     private final ConexionBD conexionBD;
-    private Bar bebidaSeleccionado;
     String marcaBuena="";
     String complementoBueno="";
+    String bebidaBuena="";
+    String saborBueno="";
+    String mezclaBuena="";
 
-    public Controlador() {
+
+    public Controlador() { //Constructor
+
         conexionBD = new ConexionBD();
         try {
             conexionBD.conectar();
@@ -104,88 +150,74 @@ public class Controlador implements Initializable {
         } catch (IOException ioe) {
             AlertUtils.mostrarError("Error al cargar la configuración");
         }
-
-        //System.out.println("user.home");
-    }
-    @FXML
-    void pulsarBotonConfirmar(ActionEvent event) {
-
-    }
-    @FXML
-    void pulsarBotonCancelar(ActionEvent event) {
-        limpiarCajas();
-        accion = Accion.NUEVO;
     }
 
+
+    //Guardamos la información en variables para luego llamar al método de la clase ConexionBD
     @FXML
-    void pulsarBotonEliminar(ActionEvent event) {
-        /*Bar bar1 = salidaDatos.getSelectionModel().getSelectedItem();
-        if (bar1 == null) {
-            lbEstado.setText("ERROR: No se ha seleccionado ningún coche");
-            return;
-        }
-
-        try {
-            Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
-            confirmacion.setTitle("Eliminar bebida");
-            confirmacion.setContentText("¿Estás seguro?");
-            Optional<ButtonType> respuesta = confirmacion.showAndWait();
-            if (respuesta.get().getButtonData() == ButtonBar.ButtonData.CANCEL_CLOSE)
-                return;
-
-            conexionBD.eliminarBebida(bar1);
-            lbEstado.setText("MENSAJE: Coche eliminado con éxito");
-
-        } catch (SQLException sqle) {
-            AlertUtils.mostrarError("No se ha podido eliminar el coche");
-        }*/
-    }
-
-    @FXML
-    void pulsarBotonGuardar(ActionEvent event) {
-
-        if (ponerBebida.getText() == null || ponerSabor.getText() == null || ponerMezcla.getText() == null || seleccionarMarca.getValue() == null || seleccionarComplemento.getValue() == null) {
+    void pulsarBotonGuardar(ActionEvent event) throws SQLException {
+        if (seleccionarBebida.getValue() == null || seleccionarSabor.getValue() == null || seleccionarMezcla.getValue() == null || seleccionarMarca.getValue() == null || seleccionarComplemento.getValue() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error en datos");
             alert.setContentText("Debe completar todos los campos");
             alert.showAndWait();
             throw new RuntimeException("");
-        } else {
+        } else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("AVISO");
+            alert.setContentText("Aunque usted cierre la aplicación, sus pedidos no se borrarán"+"\n"+"Cuando haga el pago se borrarán todos sus pedidos");
+            alert.showAndWait();
+
+            bebidaBuena=seleccionarBebida.getValue();
+            saborBueno=seleccionarSabor.getValue();
+            mezclaBuena=seleccionarMezcla.getValue();
             marcaBuena = seleccionarMarca.getValue();
             complementoBueno = seleccionarComplemento.getValue();
-
-        }
-        aniadir();
-    }
-        private void aniadir(){
-            Bar bar= new Bar();
-            bar.bebida.set(ponerBebida.getText());
-            bar.sabor.set(ponerSabor.getText());
-            bar.mezcla.set(ponerMezcla.getText());
-            bar.marca.set(marcaBuena);
-            bar.complemento.set(complementoBueno);
-            resultados.add(bar);
-            System.out.println(resultados);
-
+            Bar objBar= new Bar(bebidaBuena,saborBueno,mezclaBuena,marcaBuena,complementoBueno);
+            conexionBD.guardarBebida(objBar);
         }
 
 
-    @FXML
-    void pulsarBotonModificar(ActionEvent event) {
-        accion = Accion.MODIFICAR;
     }
+    //Vaciamos los combobox
+    private void limpiarCajas() {
+        seleccionarBebida.setValue("");
+        seleccionarSabor.setValue("");
+        seleccionarMezcla.setValue("");
+        seleccionarMarca.setValue("");
+        seleccionarComplemento.setValue("");
 
+    }
+    //Pulsamos el botón nuevo y se limpian los  combobox
     @FXML
     void pulsarBotonNuevo(ActionEvent event) {
         limpiarCajas();
-        accion = Accion.NUEVO;
     }
 
+    //Pulsamos el botón VerOpciones y se muestran las opciones que otros usuarios han seleccionado
+    //para que nos sirva de ayuda a la hora de elegir nuestro pedido
     @FXML
-    void pulsarBotonOpciones(ActionEvent event) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("opciones"));
+    void pulsarBotonOpciones(ActionEvent event) throws SQLException {
+        try {
+            salidaOpciones.getItems().clear();
+            List<Bar> bebidas = conexionBD.obtenerBebidas();
+            salidaOpciones.setItems(FXCollections.observableArrayList(bebidas).sorted());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+//Botón que pulsamso cuando ya hemos acabado de pedir nuestros pedidos
+    @FXML
+    void pulsarbotonFinalizarPedido(ActionEvent event)throws SQLException {
+        FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("pedido.fxml"));
         try {
             Parent root = fxmlLoader.load();
+            seleccionarBebida.setValue(null);
+            seleccionarSabor.setValue(null);
+            seleccionarMezcla.setValue(null);
+            seleccionarMarca.setValue(null);
+            seleccionarComplemento.setValue(null);
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -193,7 +225,7 @@ public class Controlador implements Initializable {
             stage.show();
 
             // Obtener una referencia al Stage de la ventana actual
-            Stage currentStage = (Stage) botonOpciones.getScene().getWindow();
+            Stage currentStage = (Stage) botonFinalizarPedido.getScene().getWindow();
             // Cerrar la ventana actual
             currentStage.close();
         } catch (IOException e) {
@@ -201,35 +233,10 @@ public class Controlador implements Initializable {
         }
     }
 
-    @FXML
-    void seleccionarBebida(MouseEvent event) {
 
     }
-    private void limpiarCajas() {
-        ponerBebida.setText("");
-        ponerSabor.setText("");
-        ponerMezcla.setText("");
-        seleccionarMarca.setValue("");
-        seleccionarComplemento.setValue("");
-
-    }
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        String[] marca = new String[]{"Negrita","Brugal","La Recompensa", "Burbon","JB","DYC","Cardú","Jagger","Burbon","Belvedere", "Eristoff", "Barceló", "Puerto de Indias","Seagram's","Tanqueray"};
-        seleccionarMarca.setItems(FXCollections.observableArrayList(marca));
-        String[]complementos=new String[]{"Rodaja Limon","Rodaja Naranja", "Gominolas","Hielo","Gotas de licor",};
-        seleccionarComplemento.setItems(FXCollections.observableArrayList(complementos));
-
-        columnaBebida.setCellValueFactory(new PropertyValueFactory<>("bebida"));
-        columnaComplemento.setCellValueFactory(new PropertyValueFactory<>("complemento"));
-        columnaMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
-        columnaMezcla.setCellValueFactory(new PropertyValueFactory<>("mezcla"));//Atributos creados
-        columnaSabor.setCellValueFactory(new PropertyValueFactory<>("sabor"));//Atributos creados
-
-        resultados= FXCollections.observableArrayList();
-        salidaDatos.setItems(resultados);
-    }
 
 
 
-}
+
+
