@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="menuInicial" stylesheets="@../../../css/css.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectobar.Menuinicial">
+   <children>
+      <Button fx:id="botonEntrar" layoutX="291.0" layoutY="347.0" mnemonicParsing="false" onAction="#pulsarBotonEntrar" text="ENTRAR" />
+      <Text layoutX="23.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textoBienvenidos" text="BIENVENID@" wrappingWidth="190.6875" />
+      <RadioButton fx:id="boton18" layoutX="266.0" layoutY="306.0" mnemonicParsing="false" text="Soy mayor de 18" />
+      <Text layoutX="54.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COCTELERÍA IVAN" />
+   </children>
+</AnchorPane>

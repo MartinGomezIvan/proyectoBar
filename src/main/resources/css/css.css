@@ -1,0 +1,36 @@
+.menuInicial{
+    -fx-background-image: url(./menuInicio.jpg);
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+.textoBienvenidos{
+    -fx-font-size: 24pt;
+    -fx-font-style: italic;
+    -fx-alignment: center;
+    -fx-background-color: black;
+}
+.fondoUltimo{
+    -fx-background-image: url(./UltimoFondo.jpg);
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+.fondoPedidos{
+    -fx-background-image: url(./fondoPedidos.jpg);
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+.fondoPagar{
+    -fx-background-image: url(./fondoPagar.jpg);
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+.texto{
+    -fx-font-size: 10pt;
+    -fx-font-style: italic;
+    -fx-alignment: center;
+    -fx-background-color: black;
+}
