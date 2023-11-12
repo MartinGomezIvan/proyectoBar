@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectobar.Controlador">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <children>
+            <Label layoutX="408.0" layoutY="39.0" text="Bebida" />
+            <Label layoutX="411.0" layoutY="85.0" text="Sabor" />
+            <Label layoutX="408.0" layoutY="127.0" text="Mezcla" />
+            <Label layoutX="411.0" layoutY="169.0" text="Marca" />
+            <TextField fx:id="ponerBebida" layoutX="477.0" layoutY="35.0" />
+            <TextField fx:id="ponerSabor" layoutX="477.0" layoutY="81.0" />
+            <TextField fx:id="ponerMezcla" layoutX="477.0" layoutY="123.0" />
+            <Button fx:id="botonNuevo" layoutX="408.0" layoutY="332.0" mnemonicParsing="false" onAction="#pulsarBotonNuevo" text="Nuevo" />
+            <Button fx:id="botonGuardar" layoutX="401.0" layoutY="244.0" mnemonicParsing="false" onAction="#pulsarBotonGuardar" prefHeight="25.0" prefWidth="231.0" text="Guardar" />
+            <Button fx:id="botonEliminar" layoutX="401.0" layoutY="269.0" mnemonicParsing="false" onAction="#pulsarBotonEliminar" prefHeight="25.0" prefWidth="231.0" text="Eliminar" />
+            <Button fx:id="botonModificar" layoutX="401.0" layoutY="294.0" mnemonicParsing="false" onAction="#pulsarBotonModificar" prefHeight="25.0" prefWidth="231.0" text="Modificar" />
+            <ComboBox fx:id="seleccionarMarca" layoutX="468.0" layoutY="164.0" prefHeight="27.0" prefWidth="167.0" />
+            <ListView fx:id="salidaDatos" layoutX="41.0" layoutY="39.0" onMouseClicked="#seleccionarBebida" prefHeight="317.0" prefWidth="359.0" />
+            <Button fx:id="botonCancelar" layoutX="470.0" layoutY="332.0" mnemonicParsing="false" onAction="#pulsarBotonCancelar" text="Cancelar" />
+            <Label fx:id="lbEstado" layoutX="41.0" layoutY="319.0" prefHeight="25.0" prefWidth="343.0" textFill="#c7183a">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="411.0" layoutY="216.0" text="Complemento" />
+            <ComboBox fx:id="seleccionarComplemento" layoutX="501.0" layoutY="211.0" prefHeight="27.0" prefWidth="123.0" />
+            <Button fx:id="botonOpciones" layoutX="542.0" layoutY="332.0" mnemonicParsing="false" onAction="#pulsarBotonOpciones" text="Ver opciones" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>

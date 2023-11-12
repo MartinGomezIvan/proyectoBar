@@ -1,0 +1,26 @@
+db.Datos.insertMany(
+[
+  {
+    "Titular" : "Pepe Sanz",
+    "Fecha" : "5/3/23",
+    "Especialidad" : "Oftalmología",
+    "Medico" : "Juan Alberto Juez",
+    "Motivo": "Mi hijo ve mal"
+  },
+  {
+    "Titular" : "Fernanda Sastre",
+    "Fecha" : "27/10/23",
+    "Especialidad" : "Odontología",
+    "Medico" : "María Rosa Puentes",
+    "Motivo": "Me duelen las muelas"
+  },
+  {
+    "Titular" : "Chus Gil",
+    "Fecha" : "12/7/23",
+    "Especialidad" : "Neurología",
+    "Medico" : "Santiago Sánchez",
+    "Motivo": "Última revisioón de cáncer!!"
+  }
+]
+)
+

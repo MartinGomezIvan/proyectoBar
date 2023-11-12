@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  db:
+    container_name: mysqldb
+    image: mysql/mysql-server:8.0.23
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - ./mysql_data/8.0.23:/var/lib/mysql
+    ports:
+      - 3307:3306
+    expose:
+      - 3307
+  mysql-workbench:
+    image: lscr.io/linuxserver/mysql-workbench:latest
+    container_name: mysql-workbench
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - /path/to/config:/config
+    ports:
+      - 3000:3000
+    cap_add:
+      - IPC_LOCK
+    restart: unless-stopped

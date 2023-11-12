@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectohospital.PreguntasFrecuentes">
+   <children>
+      <Label layoutX="39.0" layoutY="38.0" text="¿Dónde se ubica el hospital?" />
+      <Label layoutX="45.0" layoutY="55.0" prefHeight="17.0" prefWidth="236.0" text="El hospital se encuentra siuado en Valladolid" />
+      <Label layoutX="39.0" layoutY="72.0" text="¿Existen especiaidades como Psiquiatría o Urología? " />
+      <Label layoutX="43.0" layoutY="89.0" prefHeight="17.0" prefWidth="515.0" text="No, sólo dispone de las especialidades que se encuentran en la pestaña de citaciones (Pedir Cita)" />
+      <Label layoutX="43.0" layoutY="106.0" prefHeight="17.0" prefWidth="440.0" text="Con el tiempo el hospital el hospital irá creciendo y acogiendo más especialidades" />
+      <Label layoutX="39.0" layoutY="123.0" text="¿Cómo puedo modificar mi cita?" />
+      <Label layoutX="39.0" layoutY="140.0" text="Visitando la página de la lista de espera, podrás modificar e incluso elimminar la cita" />
+      <Label layoutX="40.0" layoutY="200.0" text="¿Tienes preguntas que hacer?, escríbelas aquí abajo!" />
+      <TextArea fx:id="escribirPregunta" layoutX="59.0" layoutY="228.0" prefHeight="152.0" prefWidth="185.0" />
+      <Label layoutX="251.0" layoutY="279.0" text="Correo para responderte:" />
+      <TextField fx:id="escribirCorreo" layoutX="402.0" layoutY="275.0" />
+      <Button fx:id="botonEnviar" layoutX="281.0" layoutY="334.0" mnemonicParsing="false" onAction="#pulsarBotonEnviar" text="Enviar" />
+      <Button fx:id="botonVolver" layoutX="350.0" layoutY="334.0" mnemonicParsing="false" onAction="#pulsarBotonVolver" text="Volver" />
+   </children>
+</AnchorPane>
