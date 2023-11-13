@@ -74,7 +74,7 @@ public class ListaEspera implements Initializable {
     }
 
     @FXML
-    void pulsarBotonModificar(ActionEvent event) {
+    void pulsarBotonModificar(ActionEvent event) {//No me lo mdofica la primera vez, solo me añade uno nuevo con la inforación nueva
         try{
             if(citaSeleccionada==null){
                 Alert alert = new Alert(Alert.AlertType.ERROR);

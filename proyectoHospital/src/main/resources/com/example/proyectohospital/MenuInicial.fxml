@@ -4,12 +4,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectohospital.MenuInicial">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="menuInicial" stylesheets="@../../../css/css.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectohospital.MenuInicial">
    <children>
       <Text layoutX="215.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HOSPITAL IVÁN" />
-      <Button fx:id="botonPedirCita" layoutX="231.0" layoutY="98.0" mnemonicParsing="false" onAction="#pulsarBotonPedirCita" text="PEDIR CITA" />
-      <Button fx:id="botonListaEspera" layoutX="204.0" layoutY="144.0" mnemonicParsing="false" onAction="#pulsarBotonListaEspera" text="VER LISTA DE ESPERA" />
-      <Button fx:id="botonPreuntasFrecuentes" layoutX="193.0" layoutY="188.0" mnemonicParsing="false" onAction="#pulsarBotonPreguntasFrecuentes" text="PREGUNTAS FRECUENTES" />
-      <Button fx:id="botonResultadoAnalisis" layoutX="197.0" layoutY="236.0" mnemonicParsing="false" onAction="#pulsarBotonResultadoAnalisis" text="RESULTADO CONSULTA" />
+      <Button fx:id="botonPedirCita" layoutX="304.0" layoutY="83.0" mnemonicParsing="false" onAction="#pulsarBotonPedirCita" text="PEDIR CITA" />
+      <Button fx:id="botonListaEspera" layoutX="282.0" layoutY="139.0" mnemonicParsing="false" onAction="#pulsarBotonListaEspera" text="VER LISTA DE ESPERA" />
+      <Button fx:id="botonPreuntasFrecuentes" layoutX="271.0" layoutY="200.0" mnemonicParsing="false" onAction="#pulsarBotonPreguntasFrecuentes" text="PREGUNTAS FRECUENTES" />
+      <Button fx:id="botonResultadoAnalisis" layoutX="276.0" layoutY="257.0" mnemonicParsing="false" onAction="#pulsarBotonResultadoAnalisis" text="RESULTADO CONSULTA" />
    </children>
 </AnchorPane>

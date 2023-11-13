@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="330.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectohospital.PedirCita">
+<AnchorPane prefHeight="330.0" prefWidth="600.0" styleClass="pedirCita" stylesheets="@../../../css/css.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectohospital.PedirCita">
    <children>
       <Label layoutX="57.0" layoutY="63.0" text="Titular" />
       <Label layoutX="25.0" layoutY="103.0" text="Dia/Mes/Año" />

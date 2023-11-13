@@ -27,10 +27,11 @@ public class PreguntasFrecuentes {
 
     @FXML
     void pulsarBotonEnviar(ActionEvent event) {
-        if(escribirPregunta.getText().isEmpty() || escribirCorreo.getText().isEmpty()){
+        String correo=escribirCorreo.getText();
+        if(escribirPregunta.getText().isEmpty() || escribirCorreo.getText().isEmpty() || !correo.matches(".*@.*")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setContentText("Debe escribir una pregunnta y un correo");
+            alert.setContentText("Debe escribir una pregunnta y un correo"+"\n"+"Recuerde que el correo debe contener una @");
 
             alert.showAndWait();
         }else{
