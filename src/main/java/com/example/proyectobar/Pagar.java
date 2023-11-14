@@ -53,7 +53,7 @@ public class Pagar {
         if (ponerCorreo.getText().isEmpty() || ponerTelefono.getText().isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error en datos");
-            alert.setContentText("Debe completar todos los campos");
+            alert.setContentText("Debe completar todos los campos.");
             alert.showAndWait();
             throw new RuntimeException("");
             //Aquí controlamos que el telefono no sea un String, y de 9 caracteres obligatoriamente
