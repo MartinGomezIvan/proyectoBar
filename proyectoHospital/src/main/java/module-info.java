@@ -9,6 +9,6 @@ module com.example.proyectohospital {
     requires com.google.gson;
 
     opens com.example.proyectohospital to javafx.fxml;
-    opens domain.Datos to javafx.base;
+    opens domain.Datos to javafx.base, com.google.gson;
     exports com.example.proyectohospital;
 }

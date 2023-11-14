@@ -67,7 +67,11 @@ public class CitaDAO {
     public void eliminarCita(Cita cita){//Preguntar si está bien
         this.conectarse();
         collection = database.getCollection("Datos");
-       Document documento1= Document.parse(gson.toJson(cita));
+        Document documento1 = new Document("Titular", cita.getTitularCita())
+                .append("Fecha", cita.getFechaCita())
+                .append("Especialidad", cita.getEspecialidadesCitas())
+                .append("Medico", cita.getMedicoCita())
+                .append("Motivo", cita.getMotivoCita());
         collection.deleteOne(documento1);
     }
     public void actualizarCita(String medico, String especialidad, String fecha, String motivo, Cita cita){

@@ -10,7 +10,7 @@
 <AnchorPane prefHeight="330.0" prefWidth="600.0" styleClass="pedirCita" stylesheets="@../../../css/css.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyectohospital.PedirCita">
    <children>
       <Label layoutX="57.0" layoutY="63.0" text="Titular" />
-      <Label layoutX="25.0" layoutY="103.0" text="Dia/Mes/Año" />
+      <Label layoutX="23.0" layoutY="116.0" text="(dd/mm/aaaa)" />
       <TextArea fx:id="escribirMotivo" layoutX="342.0" layoutY="24.0" prefHeight="200.0" prefWidth="200.0" />
       <Label layoutX="287.0" layoutY="116.0" text="Motivo" />
       <ComboBox fx:id="seleccionarEspecialidad" layoutX="110.0" layoutY="135.0" prefWidth="150.0" />
@@ -22,5 +22,6 @@
       <TextField fx:id="ponerTitular" layoutX="110.0" layoutY="59.0" />
       <TextField fx:id="ponerDiaMesAño" layoutX="110.0" layoutY="99.0" />
       <Button fx:id="botonVolver" layoutX="48.0" layoutY="252.0" mnemonicParsing="false" onAction="#pulsarBotonVolver" text="VOLVER" />
+      <Label layoutX="42.0" layoutY="103.0" text="Fecha" />
    </children>
 </AnchorPane>

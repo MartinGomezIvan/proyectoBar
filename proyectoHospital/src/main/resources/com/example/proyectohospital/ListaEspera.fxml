@@ -14,14 +14,15 @@
       <TableView fx:id="salidaCitas" layoutX="14.0" layoutY="78.0" onMouseClicked="#seleccionarCita" prefHeight="304.0" prefWidth="375.0" />
       <Button fx:id="botonEliminar" layoutX="409.0" layoutY="90.0" mnemonicParsing="false" onAction="#pulsarBotonEliminar" text="Eliminar" />
       <Button fx:id="botonModificar" layoutX="473.0" layoutY="90.0" mnemonicParsing="false" onAction="#pulsarBotonModificar" text="Modificar" />
-      <Label layoutX="397.0" layoutY="183.0" text="Dia/Mes/Año" />
+      <Label layoutX="412.0" layoutY="183.0" text="Fecha" />
       <Label layoutX="405.0" layoutY="221.0" text="Especialidad" />
       <Label layoutX="403.0" layoutY="249.0" text="Medico" />
       <Label layoutX="468.0" layoutY="291.0" text="Motivo" />
-      <TextField fx:id="meterFechaActualizar" layoutX="472.0" layoutY="179.0" />
+      <TextField fx:id="meterFechaActualizar" layoutX="466.0" layoutY="179.0" />
       <ComboBox fx:id="seleccionarEspecialidadActualizar" layoutX="476.0" layoutY="217.0" prefHeight="25.0" prefWidth="115.0" />
       <ComboBox fx:id="seleccionarMedicoActualizar" layoutX="459.0" layoutY="245.0" prefHeight="25.0" prefWidth="115.0" />
       <TextArea fx:id="meterMotivoActualizar" layoutX="423.0" layoutY="315.0" prefHeight="90.0" prefWidth="149.0" />
       <Button fx:id="botonVolver" layoutX="546.0" layoutY="90.0" mnemonicParsing="false" onAction="#pulsarBotonVolver" text="Volver" />
+      <Label layoutX="389.0" layoutY="196.0" text="(dd/mm/aaaa)" />
    </children>
 </AnchorPane>

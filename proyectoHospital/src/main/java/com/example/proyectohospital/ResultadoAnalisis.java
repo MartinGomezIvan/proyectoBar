@@ -59,7 +59,7 @@ public class ResultadoAnalisis implements Initializable {
             Date fechaRecogida=formato.parse(fecha);
             Date fechaActual=new Date();
 
-            if (fechaRecogida==fechaActual || fechaRecogida.toInstant().isBefore(fechaActual.toInstant())){
+            if (fechaRecogida==fechaActual || fechaRecogida.before(fechaActual)){
                 //Esto es para saber si la fecha que he emtido es igual a la actual o si la fecha ya ha pasado
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Resultado");

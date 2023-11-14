@@ -74,7 +74,11 @@ public class ListaEspera implements Initializable {
     }
 
     @FXML
-    void pulsarBotonModificar(ActionEvent event) {//No me lo mdofica la primera vez, solo me añade uno nuevo con la inforación nueva
+    void pulsarBotonModificar(ActionEvent event) {
+        //Nada más arrancar la aplicación, cuando insertamos un valor y luego ese mismo queremos modificarlo
+        //no lo hace, me inserta el nuuevo dato modificado
+        //Cuando queremos insertar un segundo dato, y modificar ese mismo, lo hace bien
+        //Conclusion: No modificar el primer dato que se inserta al arrancar la aplicación
         try{
             if(citaSeleccionada==null){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
